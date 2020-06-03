@@ -15,7 +15,9 @@ class cube(object):
     def draw(self, surface, eyes=False):
         pass
 
-class snake(object):
+class snakeObj(object):
+    body = []
+    turns = {}
     def __index__(self, color, pos):
         pass
 
@@ -36,10 +38,16 @@ def drawGrid(w, rows, surface):
 
     x = 0
     y = 0
+    for l in range(rows):
+        x = x + sizeBetween
+        y = y + sizeBetween
+
+        pygame.draw.line(surface, (255, 255, 255), (x, 0), (x, w))
+        pygame.draw.line(surface, (255, 255, 255), (0, y), (w, y))
 
 def redrawWindow(surface):
     global rows, width
-    win.fill((0, 0, 0))
+    surface.fill((0, 0, 0))
     drawGrid(width, rows, surface)
     pygame.display.update()
 
@@ -54,7 +62,7 @@ def main():
     rows = 20
     width = 500
     win = pygame.display.set_mode((width, width))
-    s = snake((255, 0, 0), (10, 10))
+    s = snakeObj()
     flag = True
 
     clock = pygame.time.Clock()
