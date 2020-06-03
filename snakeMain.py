@@ -2,6 +2,7 @@ import math
 import random
 import pygame
 import tkinter as tk
+from tkinter import messagebox
 
 class cube(object):
     rows = 0
@@ -15,14 +16,34 @@ class cube(object):
     def draw(self, surface, eyes=False):
         pass
 
-class snakeObj(object):
+class snake(object):
     body = []
     turns = {}
     def __index__(self, color, pos):
-        pass
+        self.color = color
+        self.head = cube(pos)
+        self.body.append(self.head)
+        self.dirnx = 0
+        self.dirny = 1
 
     def move(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+            keys = pygame.keys.get_pressed()
+
+            for key in keys:
+                if keys[pygame.K_LEFT]:
+                    self.dirnx = -1
+                    self.dirny = 0
+                    self.turns[self.head.pos[:]] # todo 1.02.26
+
+                if keys[pygame.K_RIGHT]:
+
+                if keys[pygame.K_UP]:
+
+                if keys[pygame.K_DOWN]:
 
     def reset(self, pos):
         pass
@@ -62,7 +83,7 @@ def main():
     rows = 20
     width = 500
     win = pygame.display.set_mode((width, width))
-    s = snakeObj()
+    s = snake()
     flag = True
 
     clock = pygame.time.Clock()
